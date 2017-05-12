@@ -26,6 +26,8 @@ group :production do
  gem 'turbolinks'
  gem 'bootstrap-sass'
  gem 'figaro'
+ gem 'bcrypt'
+ gem 'active_model_serializers', '~> 0.10.0', require: true
 
  group :development, :test do
    gem 'byebug'
