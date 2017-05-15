@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   # get 'home/index'
 
-  resources :users, only: [:new, :create]
+  namespace :api, defaults: { format: :json } do
+     resources :users
+  end
 
   root 'home#index'
 

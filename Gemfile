@@ -27,6 +27,7 @@ group :production do
  gem 'bootstrap-sass'
  gem 'figaro'
  gem 'bcrypt'
+ gem 'rails-controller-testing'
  gem 'active_model_serializers', '~> 0.10.0', require: true
 
  group :development, :test do
