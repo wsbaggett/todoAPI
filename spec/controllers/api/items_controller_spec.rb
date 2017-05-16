@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::ItemsController, type: :controller do
-
+  let(:my_list) { create(:list) }
   let(:my_item) { create(:item) }
 
   describe "POST create" do
