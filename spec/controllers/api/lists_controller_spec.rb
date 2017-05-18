@@ -12,6 +12,18 @@ RSpec.describe Api::ListsController, type: :controller do
      end
   end
 
+  describe "PUT update" do
+      it "updates the list" do
+
+        new_name = "MyToDoList2"
+        new_permissions = "private"
+
+        #put :update, id: my_list.id, list: {permissions: new_permissions}
+			  my_list.update(permissions: new_permissions)
+			  expect(my_list.permissions).to eq new_permissions
+     end
+  end
+
   describe "DELETE destroy" do
      it "deletes the list" do
        delete :destroy, {user_id: my_user.id, id: my_list.id}

@@ -7,6 +7,7 @@ RSpec.describe Item, type: :model do
   # Shoulda tests for description
   it { is_expected.to validate_presence_of(:description) }
   it { is_expected.to validate_length_of(:description).is_at_least(2) }
+  it { is_expected.to validate_inclusion_of(:completed).in_array(%w(true false)) }
 
   it { is_expected.to belong_to(:list) }
 
