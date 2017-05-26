@@ -4,12 +4,30 @@ RSpec.describe Api::ItemsController, type: :controller do
   let(:my_list) { create(:list) }
   let(:my_item) { create(:item) }
 
+  before :each do
+    # simiulate user and sign in
+    #allow(controller).to receive(:authenticated?)
+    user = 'TestUser1'
+    pw = 'password'
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
+  end
+
   describe "POST create" do
 
-      it "assigns the new item to item" do
-       post :create, list_id: my_list.id, item: {description: "MyToDoItem", completed: "false"}
-       expect(assigns(:item)).to eq Item.last
-     end
+      it "increases the number of Items by 1" do
+        my_list
+
+        expect{post :create, list_id: my_list.id, item: {description: "MyToDoItem", completed: "false"}}.to change(Item,:count).by(1)
+        Rails.logger.info response.body
+      end
+
+      #it "assigns the new item to item", focus: true do
+       #my_list
+
+       #post :create, list_id: my_list.id, item: {description: "MyToDoItem", completed: "true"}
+       #binding.pry
+       #expect(assigns(:item)).to eq Item.last
+      #end
   end
 
   describe "PUT update" do

@@ -13,7 +13,7 @@ it { is_expected.to validate_length_of(:password).is_at_least(6) }
 
 describe "attributes" do
   it "should have username attribute" do
-    expect(user).to have_attributes(username: "Bloc User")
+    expect(user).to have_attributes(username: "TestUser1")
   end
  end
 

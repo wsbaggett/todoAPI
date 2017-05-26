@@ -10,11 +10,11 @@ class Api::UsersController < ApiController
 
    def create
      user = User.new(user_params)
-    if user.save
-      render json: user
-    else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-    end
+     if user.save
+       render json: user
+     else
+       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+     end
    end
 
    def destroy
@@ -23,7 +23,7 @@ class Api::UsersController < ApiController
        user.destroy
        render json: {}, status: :no_content
      rescue ActiveRecord::RecordNotFound
-       render :json => {}, :status => :not_found
+       render json: {}, status: :not_found
      end
    end
 
