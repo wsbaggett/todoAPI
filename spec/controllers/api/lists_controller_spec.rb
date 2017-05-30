@@ -20,12 +20,12 @@ RSpec.describe Api::ListsController, type: :controller do
        expect{post :create, user_id: my_user.id, list: {name: "MyToDoList", permissions: "public"}}.to change(List,:count).by(1)
      end
 
-      #it "assigns the new list to list" do
-        #my_user
+      it "expect http status to return successful" do
+        my_user
 
-       #post :create, user_id: my_user.id, list: {name: "MyToDoList", permissions: "public"}
-       #expect(assigns(:list)).to eq List.last
-     #end
+       post :create, user_id: my_user.id, list: {name: "MyToDoList", permissions: "public"}
+       expect(response).to have_http_status(:success)
+     end
   end
 
   describe "PUT update" do
@@ -35,9 +35,9 @@ RSpec.describe Api::ListsController, type: :controller do
         new_name = "MyToDoList2"
         new_permissions = "private"
 
-        #put :update, id: my_list.id, list: {permissions: new_permissions}
-			  my_list.update(permissions: new_permissions)
-			  expect(my_list.permissions).to eq new_permissions
+        put :update, id: my_list.id, list: {permissions: new_permissions}
+        updated_list = List.find(my_list.id)
+			  expect(updated_list.permissions).to eq new_permissions
      end
   end
 

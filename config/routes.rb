@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
 
-  #namespace :api do
-  #  get 'items/create'
-  #end
-
-  #namespace :api do
-  #  get 'lists/create'
-  #end
-
-
   namespace :api, defaults: { format: :json } do
 
     resources :users do

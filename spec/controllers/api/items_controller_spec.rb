@@ -21,13 +21,12 @@ RSpec.describe Api::ItemsController, type: :controller do
         Rails.logger.info response.body
       end
 
-      #it "assigns the new item to item", focus: true do
-       #my_list
+      it "expect http status to return successful" do
+       my_list
 
-       #post :create, list_id: my_list.id, item: {description: "MyToDoItem", completed: "true"}
-       #binding.pry
-       #expect(assigns(:item)).to eq Item.last
-      #end
+       post :create, list_id: my_list.id, item: {description: "MyToDoItem", completed: "true"}
+       expect(response).to have_http_status(:success)
+      end
   end
 
   describe "PUT update" do
@@ -36,9 +35,9 @@ RSpec.describe Api::ItemsController, type: :controller do
         new_description = "MyToDoItem2"
         new_completed = "true"
 
-        #put :update, id: my_item.id, item: {description: new_description, completed: new_completed}
-			  my_item.update(completed: new_completed)
-			  expect(my_item.completed).to eq new_completed
+        put :update, id: my_item.id, item: {description: new_description, completed: new_completed}
+        updated_item = Item.find(my_item.id)
+			  expect(updated_item.completed).to eq new_completed
      end
   end
 

@@ -4,12 +4,6 @@ RSpec.describe Api::UsersController, type: :controller do
 
   let(:my_user) { create(:user) }
 
-  let(:new_user) do
-     {
-         name: "Walter",
-         password: "password"
-     }
-   	 end
 
      before :each do
        # simiulate user and sign in
@@ -48,10 +42,22 @@ RSpec.describe Api::UsersController, type: :controller do
 
    describe "POST create" do
 
-       it "assigns the new user to @user" do
-        post :create, user: new_user
-        expect(assigns(:user)).to eq User.last
+      new_username = "Walter"
+      new_password = "password"
+
+      it "increases the number of users by 1" do
+        my_user
+
+        expect{post :create, user: {username: new_username, password: new_password}}.to change(User,:count).by(1)
       end
+
+      it "expect http status to return successful" do
+        my_user
+
+        post :create, user: {username: new_username, password: new_password}
+        expect(response).to have_http_status(:success)
+      end
+
    end
 
 end
